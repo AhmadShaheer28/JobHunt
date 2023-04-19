@@ -9,48 +9,72 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+    @IBOutlet weak var jobSearchTF: UITextField!
+    @IBOutlet weak var tableView: UITableView!
+    
+    
+    var jobPostings = [JobPosting]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+                
+        tableView.delegate = self
+        tableView.dataSource = self
         
-        getJobs { data, error in
-          if let error = error {
-            print("Error: \(error.localizedDescription)")
-            return
-          }
-          guard let data = data else {
-            print("No data received")
-            return
-          }
-//          do {
-//            let decoder = JSONDecoder()
-////            let jobs = try decoder.decode([Job].self, from: data)
-//            // Handle the retrieved jobs data here
-//          } catch {
-//            print("Error decoding data: \(error.localizedDescription)")
-//          }
-            
-            print("json => ", String(data: data, encoding: .utf8) ?? "json in nil")
-        }
-        
+        getJobs()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
+    func getJobs() {
+        let param = ["keywords": "software developer", "locationName": "london"]
+        NetworkManager.shared.getJobs(baseUrl: Constant.baseURL + EndPoint.search, params: param) { (results: MainApi<[JobPosting]>?, error) in
+            if let results {
+                self.jobPostings = results.results
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    func generateRandomColor() -> UIColor {
+        let redValue = CGFloat(drand48())
+        let greenValue = CGFloat(drand48())
+        let blueValue = CGFloat(drand48())
+        
+        let randomColor = UIColor(red: redValue, green: greenValue, blue: blueValue, alpha: 1.0)
+        
+        return randomColor
+    }
+    
+}
 
-    func getJobs(completion: @escaping (Data?, Error?) -> Void) {
-        let urlString = "https://jobs.github.com/positions.json"
-        guard let url = URL(string: urlString) else {
-            completion(nil, NSError(domain: "Invalid URL", code: 0, userInfo: nil))
-            return
-        }
-        
-        var request = URLRequest(url: url)
-        request.setValue("Bearer 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", forHTTPHeaderField: "Authorization")
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            completion(data, error)
-        }.resume()
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        jobPostings.count
     }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "JobPostingCell", for: indexPath) as? JobPostingCell else { return UITableViewCell() }
+        
+        cell.jobTitleLbl.text = jobPostings[indexPath.row].jobTitle
+        cell.empNameLbl.text = jobPostings[indexPath.row].employerName
+        cell.locationLbl.text = jobPostings[indexPath.row].locationName
+        cell.empViewLbl.text = jobPostings[indexPath.row].employerName?.prefix(1).uppercased()
+        cell.postingView.backgroundColor = generateRandomColor()
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        guard let vc = storyboard.instantiateViewController(withIdentifier: "jobDetail") as? JobDetailViewController else { return }
+        vc.jobId = jobPostings[indexPath.row].jobId
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }

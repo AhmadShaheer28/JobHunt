@@ -21,6 +21,8 @@
 		1AB9163F29DE128800E1D717 /* JobPosting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9163E29DE128800E1D717 /* JobPosting.swift */; };
 		1AB9164429DE1A8400E1D717 /* JobPostingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9164329DE1A8400E1D717 /* JobPostingCell.swift */; };
 		1AB9164629DF438500E1D717 /* JobDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9164529DF438500E1D717 /* JobDetailViewController.swift */; };
+		1AB9164929E2EAC700E1D717 /* JobHuntDB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9164729E2EAC700E1D717 /* JobHuntDB.xcdatamodeld */; };
+		1AB9164B29E2EBEF00E1D717 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9164A29E2EBEF00E1D717 /* DBManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		1AB9163E29DE128800E1D717 /* JobPosting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPosting.swift; sourceTree = "<group>"; };
 		1AB9164329DE1A8400E1D717 /* JobPostingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPostingCell.swift; sourceTree = "<group>"; };
 		1AB9164529DF438500E1D717 /* JobDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobDetailViewController.swift; sourceTree = "<group>"; };
+		1AB9164829E2EAC700E1D717 /* JobHuntDB.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JobHuntDB.xcdatamodel; sourceTree = "<group>"; };
+		1AB9164A29E2EBEF00E1D717 /* DBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +86,7 @@
 				1A25BAFC29D78A49000CEB67 /* Assets.xcassets */,
 				1A25BAFE29D78A49000CEB67 /* LaunchScreen.storyboard */,
 				1A25BB0129D78A49000CEB67 /* Info.plist */,
+				1AB9164729E2EAC700E1D717 /* JobHuntDB.xcdatamodeld */,
 			);
 			path = JobHunt;
 			sourceTree = "<group>";
@@ -127,6 +132,7 @@
 		1A25BB0B29D78A97000CEB67 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				1AB9164A29E2EBEF00E1D717 /* DBManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -212,6 +218,8 @@
 			files = (
 				1AB9163929DAF42F00E1D717 /* ProfileViewController.swift in Sources */,
 				1AB9163F29DE128800E1D717 /* JobPosting.swift in Sources */,
+				1AB9164929E2EAC700E1D717 /* JobHuntDB.xcdatamodeld in Sources */,
+				1AB9164B29E2EBEF00E1D717 /* DBManager.swift in Sources */,
 				1AB9164429DE1A8400E1D717 /* JobPostingCell.swift in Sources */,
 				1AB9163529DAEB4B00E1D717 /* TabBarViewController.swift in Sources */,
 				1AB9163729DAF1B000E1D717 /* SavedJobViewController.swift in Sources */,
@@ -438,6 +446,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1AB9164729E2EAC700E1D717 /* JobHuntDB.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1AB9164829E2EAC700E1D717 /* JobHuntDB.xcdatamodel */,
+			);
+			currentVersion = 1AB9164829E2EAC700E1D717 /* JobHuntDB.xcdatamodel */;
+			path = JobHuntDB.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 1A25BAE829D78A48000CEB67 /* Project object */;
 }

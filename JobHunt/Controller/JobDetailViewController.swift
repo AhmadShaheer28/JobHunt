@@ -22,6 +22,7 @@ class JobDetailViewController: UIViewController {
     
     
     var jobId = 0
+    var jobDetail: JobPosting?
     
     
     override func viewDidLoad() {
@@ -45,6 +46,14 @@ class JobDetailViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func saveBtnTapped(_ sender: Any) {
+        if let jd = jobDetail {
+            DBManager.shared.saveJob(job: jd)
+            showAlert(title: "Success", message: "Job saved successfully!")
+        }
+    }
+    
+    
     func getJobDetail() {
         NetworkManager.shared.getJobs(baseUrl: Constant.baseURL + EndPoint.job + "/\(jobId)") { (results: JobPosting?, error) in
             if let results {
@@ -56,6 +65,7 @@ class JobDetailViewController: UIViewController {
     }
     
     func populateUI(jobDet: JobPosting) {
+        jobDetail = jobDet
         empNameLetterLbl.text = jobDet.employerName?.prefix(1).uppercased()
         jobTypeLbl.text = jobDet.contractType
         jobTitleLbl.text = jobDet.jobTitle
@@ -91,6 +101,11 @@ class JobDetailViewController: UIViewController {
         
     }
     
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
 }
 
 

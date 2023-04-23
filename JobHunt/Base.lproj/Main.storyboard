@@ -237,12 +237,22 @@
                                             <action selector="backAction:" destination="SYf-j8-sKB" eventType="touchUpInside" id="Dsu-j7-ZHL"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AbB-77-AwK">
+                                        <rect key="frame" x="353" y="63" width="24" height="24"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="ic_save"/>
+                                        <connections>
+                                            <action selector="saveBtnTapped:" destination="SYf-j8-sKB" eventType="touchUpInside" id="ZIx-XD-pq2"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="uhy-NQ-Wgr" firstAttribute="leading" secondItem="AqN-Bc-X0n" secondAttribute="leading" constant="16" id="7us-WZ-E1Q"/>
+                                    <constraint firstAttribute="trailing" secondItem="AbB-77-AwK" secondAttribute="trailing" constant="16" id="ZPa-EW-rvH"/>
                                     <constraint firstItem="uq0-gu-kyc" firstAttribute="centerX" secondItem="AqN-Bc-X0n" secondAttribute="centerX" id="aCF-4s-jBw"/>
                                     <constraint firstAttribute="height" constant="100" id="dzf-fY-Kgr"/>
+                                    <constraint firstItem="AbB-77-AwK" firstAttribute="centerY" secondItem="uq0-gu-kyc" secondAttribute="centerY" id="jCZ-Yf-RSP"/>
                                     <constraint firstItem="uhy-NQ-Wgr" firstAttribute="centerY" secondItem="uq0-gu-kyc" secondAttribute="centerY" id="kah-Fg-Sjf"/>
                                     <constraint firstAttribute="bottom" secondItem="uq0-gu-kyc" secondAttribute="bottom" constant="10" id="rSl-aA-VUk"/>
                                 </constraints>
@@ -553,6 +563,7 @@
         <image name="arrowshape.backward.fill" catalog="system" width="128" height="104"/>
         <image name="ic_filter" width="25" height="25"/>
         <image name="ic_job_type" width="24" height="24"/>
+        <image name="ic_save" width="24" height="24"/>
         <image name="ic_search" width="26" height="26"/>
         <image name="ic_time" width="24" height="24"/>
         <systemColor name="linkColor">

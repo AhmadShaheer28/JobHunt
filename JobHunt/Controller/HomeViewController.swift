@@ -6,24 +6,31 @@
 //
 
 import UIKit
+import CoreLocation
 
 class HomeViewController: UIViewController {
 
+    @IBOutlet weak var loader: UIActivityIndicatorView!
     @IBOutlet weak var jobSearchTF: UITextField!
     @IBOutlet weak var tableView: UITableView!
     
     
     var jobPostings = [JobPosting]()
+    private var locationManager: CLLocationManager?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        setUpLocationManager()
                 
         tableView.delegate = self
         tableView.dataSource = self
         
-        getJobs()
+        let param = ["keywords": "software developer", "locationName": "london"]
+        getJobs(param: param)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -31,9 +38,30 @@ class HomeViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = false
     }
     
-    func getJobs() {
-        let param = ["keywords": "software developer", "locationName": "london"]
+    
+    @IBAction func searchAction(_ sender: Any) {
+        if let searchedText = jobSearchTF.text {
+            if !searchedText.isEmpty {
+                let param = ["keywords": "\(searchedText)", "locationName": "london"]
+                getJobs(param: param)
+            }
+        }
+    }
+    
+    @IBAction func mapBtnAction(_ sender: Any) {
+        print("Map button tapped!")
+    }
+    
+    func getJobs(param: [String: String]) {
+        
+        self.loader.isHidden = false
+        loader.startAnimating()
+        
         NetworkManager.shared.getJobs(baseUrl: Constant.baseURL + EndPoint.search, params: param) { (results: MainApi<[JobPosting]>?, error) in
+            
+            self.loader.stopAnimating()
+            self.loader.isHidden = true
+            
             if let results {
                 self.jobPostings = results.results
                 self.tableView.reloadData()
@@ -51,6 +79,26 @@ class HomeViewController: UIViewController {
         return randomColor
     }
     
+    func setUpLocationManager() {
+        
+        locationManager = CLLocationManager()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager?.delegate = self
+            locationManager?.requestWhenInUseAuthorization()
+            locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager?.startUpdatingLocation()
+        } else { print("Please enable location service!") }
+        
+    }
+    
+}
+
+extension HomeViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        locationManager?.stopUpdatingLocation()
+    }
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {

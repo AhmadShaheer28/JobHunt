@@ -79,6 +79,9 @@
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="ic_search"/>
+                                        <connections>
+                                            <action selector="searchAction:" destination="1ws-h8-8IX" eventType="touchUpInside" id="SaM-9T-uMt"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nab-G7-62z">
                                         <rect key="frame" x="331" y="0.0" width="32" height="34"/>
@@ -88,6 +91,9 @@
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="ic_filter"/>
+                                        <connections>
+                                            <action selector="mapBtnAction:" destination="1ws-h8-8IX" eventType="touchUpInside" id="ZI3-8f-gow"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -172,6 +178,10 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="BPv-rM-et9">
+                                <rect key="frame" x="178" y="420" width="37" height="37"/>
+                                <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2eS-2L-vL8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -180,13 +190,16 @@
                             <constraint firstItem="2eS-2L-vL8" firstAttribute="trailing" secondItem="eUo-Ju-gpP" secondAttribute="trailing" constant="15" id="89u-3l-ggf"/>
                             <constraint firstItem="2eS-2L-vL8" firstAttribute="trailing" secondItem="tYZ-DT-W4x" secondAttribute="trailing" constant="15" id="BjU-du-sxz"/>
                             <constraint firstItem="2eS-2L-vL8" firstAttribute="bottom" secondItem="eUo-Ju-gpP" secondAttribute="bottom" id="Cnt-iW-ayR"/>
+                            <constraint firstItem="BPv-rM-et9" firstAttribute="centerX" secondItem="2eS-2L-vL8" secondAttribute="centerX" id="G5B-Uv-Z6O"/>
                             <constraint firstItem="tYZ-DT-W4x" firstAttribute="top" secondItem="2eS-2L-vL8" secondAttribute="top" id="PWp-1t-Rht"/>
                             <constraint firstItem="tYZ-DT-W4x" firstAttribute="leading" secondItem="2eS-2L-vL8" secondAttribute="leading" constant="15" id="qlE-y2-ERE"/>
+                            <constraint firstItem="BPv-rM-et9" firstAttribute="centerY" secondItem="2eS-2L-vL8" secondAttribute="centerY" id="vsv-lm-Z6J"/>
                             <constraint firstItem="eUo-Ju-gpP" firstAttribute="leading" secondItem="2eS-2L-vL8" secondAttribute="leading" constant="15" id="ywV-H9-OdQ"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="jobSearchTF" destination="Si8-a2-bFk" id="yQV-EO-md0"/>
+                        <outlet property="loader" destination="BPv-rM-et9" id="Uyh-fW-8XG"/>
                         <outlet property="tableView" destination="eUo-Ju-gpP" id="1lx-Y2-eVK"/>
                     </connections>
                 </viewController>

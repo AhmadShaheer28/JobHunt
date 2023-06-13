@@ -44,14 +44,14 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         homeNavController = UINavigationController(rootViewController: homeVC)
         homeNavController.isNavigationBarHidden = true
 
-        let savedJobVC = storyboard.instantiateViewController(withIdentifier: "savedVC") as! SavedJobViewController
+        let savedJobVC = storyboard.instantiateViewController(withIdentifier: "profileVC") as! SavedJobViewController
         savedJobVC.tabBarItem.title = "Saved jobs"
         savedJobVC.tabBarItem.image = UIImage(named: "ic_fav_grey")!.withRenderingMode(.alwaysOriginal)
         savedJobVC.tabBarItem.selectedImage = UIImage(named: "ic_fav")!.withRenderingMode(.alwaysOriginal)
         favouritesNavController = UINavigationController(rootViewController: savedJobVC)
         favouritesNavController.isNavigationBarHidden = true
         
-        let profileVC = storyboard.instantiateViewController(withIdentifier: "profileVC") as! ProfileViewController
+        let profileVC = storyboard.instantiateViewController(withIdentifier: "savedVC") as! ProfileViewController
         profileVC.tabBarItem.title = "Profile"
         profileVC.tabBarItem.image = UIImage(named: "ic_profile_grey")!.withRenderingMode(.alwaysOriginal)
         profileVC.tabBarItem.selectedImage = UIImage(named: "ic_profile")!.withRenderingMode(.alwaysOriginal)

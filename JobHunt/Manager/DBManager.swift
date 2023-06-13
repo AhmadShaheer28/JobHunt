@@ -36,4 +36,31 @@ class DBManager: NSObject {
         catch let error { print("error while saving Data", error.localizedDescription) }
     }
     
+    
+    
+    func getAllSavedJobs() -> [JobPosting] {
+        guard let context else { return [] }
+        var savedJobs = [JobPosting]()
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SavedJob")
+        
+        do {
+            guard let data = try context.fetch(fetchRequest) as? [SavedJob] else { return [] }
+            
+            for job in data {
+                let id = job.jobId
+                if let title = job.jobTitle, let empName = job.employerName, let location = job.locationName {
+                    savedJobs.append(JobPosting(jobId: Int(id), employerId: 0, employerName: empName, employerProfileId: "", employerProfileName: "", jobTitle: title, locationName: location, minimumSalary: 0, maximumSalary: 0, currency: "", expirationDate: "", date: "", jobDescription: "", applications: 0, jobUrl: "", contractType: "", salary: "", datePosted: ""))
+                }
+            }
+            
+            return savedJobs
+            
+        } catch let error {
+            print("Fav error", error.localizedDescription)
+        }
+        
+        return []
+    }
+    
 }

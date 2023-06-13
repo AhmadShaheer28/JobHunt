@@ -9,6 +9,7 @@ import UIKit
 
 class SavedJobViewController: UIViewController {
 
+    @IBOutlet weak var noJobsLbl: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     var jobPostings = [JobPosting]()
@@ -16,13 +17,30 @@ class SavedJobViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        jobPostings = DBManager.shared.getAllSavedJobs()
-        
         tableView.delegate = self
         tableView.dataSource = self
 
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tabBarController?.tabBar.isHidden = false
+        
+        jobPostings = DBManager.shared.getAllSavedJobs()
+        noJobsLbl.isHidden = !jobPostings.isEmpty
+        tableView.reloadData()
+    }
+    
+    func generateRandomColor() -> UIColor {
+        let redValue = CGFloat(drand48())
+        let greenValue = CGFloat(drand48())
+        let blueValue = CGFloat(drand48())
+        
+        let randomColor = UIColor(red: redValue, green: greenValue, blue: blueValue, alpha: 1.0)
+        
+        return randomColor
+    }
 
 }
 
@@ -38,7 +56,7 @@ extension SavedJobViewController: UITableViewDelegate, UITableViewDataSource {
         cell.empNameLbl.text = jobPostings[indexPath.row].employerName
         cell.locationLbl.text = jobPostings[indexPath.row].locationName
         cell.empViewLbl.text = jobPostings[indexPath.row].employerName?.prefix(1).uppercased()
-//        cell.postingView.backgroundColor = generateRandomColor()
+        cell.postingView.backgroundColor = generateRandomColor()
         
         return cell
     }

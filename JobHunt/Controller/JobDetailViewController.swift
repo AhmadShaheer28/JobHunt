@@ -19,10 +19,12 @@ class JobDetailViewController: UIViewController {
     @IBOutlet weak var empNameLbl: UILabel!
     @IBOutlet weak var jobTitleLbl: UILabel!
     @IBOutlet weak var jobLinkLbl: UILabel!
+    @IBOutlet weak var saveBtn: UIButton!
     
     
     var jobId = 0
     var jobDetail: JobPosting?
+    var isJobSaved = false
     
     
     override func viewDidLoad() {
@@ -32,7 +34,11 @@ class JobDetailViewController: UIViewController {
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(linkTapped))
         jobLinkLbl.addGestureRecognizer(tap)
+        
+        isJobSaved = DBManager.shared.isSavedJob(jobId: jobId)
 
+        isJobSaved ? saveBtn.setImage(UIImage(named: "ic_remove"), for: .normal) : saveBtn.setImage(UIImage(named: "ic_save"), for: .normal)
+        
         getJobDetail()
     }
     
@@ -47,9 +53,18 @@ class JobDetailViewController: UIViewController {
     }
     
     @IBAction func saveBtnTapped(_ sender: Any) {
-        if let jd = jobDetail {
-            DBManager.shared.saveJob(job: jd)
-            showAlert(title: "Success", message: "Job saved successfully!")
+        if !isJobSaved {
+            if let jd = jobDetail {
+                DBManager.shared.saveJob(job: jd)
+                isJobSaved = false
+                showAlert(title: "Success", message: "Job saved successfully!")
+                saveBtn.setImage(UIImage(named: "ic_remove"), for: .normal)
+            }
+        } else {
+            DBManager.shared.removeSavedJob(jobId: jobId)
+            isJobSaved = true
+            showAlert(title: "Success", message: "Job removed successfully!")
+            saveBtn.setImage(UIImage(named: "ic_save"), for: .normal)
         }
     }
     

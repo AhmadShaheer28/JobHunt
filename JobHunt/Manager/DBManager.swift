@@ -36,7 +36,46 @@ class DBManager: NSObject {
         catch let error { print("error while saving Data", error.localizedDescription) }
     }
     
+    func removeSavedJob(jobId: Int) {
+        guard let context else { return }
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SavedJob")
+        fetchRequest.predicate = NSPredicate(format: "jobId == %@", "\(jobId)")
+        
+        do {
+            if let results = try context.fetch(fetchRequest) as? [SavedJob] {
+                
+                if let res = results.first {
+                    context.delete(res)
+                }
+                
+            } else {
+                // Error deleting data
+            }
+        } catch let error {
+            print("Save error", error.localizedDescription)
+        }
+        
+        delegate?.saveContext()
+    }
     
+    func isSavedJob(jobId: Int) -> Bool {
+        guard let context else { return false }
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SavedJob")
+        fetchRequest.predicate = NSPredicate(format: "jobId == %@", "\(jobId)")
+        
+        do {
+            if let results = try context.fetch(fetchRequest) as? [SavedJob] {
+                if results.count > 0 {
+                    print(results.first?.jobTitle ?? "")
+                    return true
+                }
+            }
+        } catch let error {
+            print("Save error", error.localizedDescription)
+        }
+        
+        return false
+    }
     
     func getAllSavedJobs() -> [JobPosting] {
         guard let context else { return [] }

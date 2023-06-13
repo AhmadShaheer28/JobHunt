@@ -96,10 +96,55 @@ class DBManager: NSObject {
             return savedJobs
             
         } catch let error {
-            print("Fav error", error.localizedDescription)
+            print("error", error.localizedDescription)
         }
         
         return []
+    }
+    
+    //MARK: - Profile methods
+    
+    func saveProfile(user: UserProfile) {
+        guard let context else { return }
+        guard let userPro = NSEntityDescription.entity(forEntityName: "UProfile", in: context) else { return }
+        
+        let saved = NSManagedObject(entity: userPro, insertInto: context)
+        
+        saved.setValue(user.name, forKey: "name")
+        saved.setValue(user.email, forKey: "email")
+        saved.setValue(user.profileImg, forKey: "profileImg")
+        saved.setValue(user.resume, forKey: "resume")
+        
+        do { try context.save() }
+        catch let error { print("error while saving Data", error.localizedDescription) }
+    }
+    
+    func getProfile() -> UserProfile? {
+        guard let context else { return nil }
+        var user: UserProfile?
+
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "UProfile")
+
+        do {
+            guard let data = try context.fetch(fetchRequest) as? [UProfile] else { return nil }
+
+            let profile = data.first
+            
+            if let profile {
+                if let name = profile.name, let email = profile.email {
+                    let pimage = profile.profileImg ?? Data()
+                    let resume = profile.resume ?? Data()
+                    user = UserProfile(name: name, email: email, profileImg: pimage, resume: resume)
+                }
+            }
+
+            return user
+
+        } catch let error {
+            print("error", error.localizedDescription)
+        }
+
+        return nil
     }
     
 }

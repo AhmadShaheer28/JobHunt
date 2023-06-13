@@ -13,6 +13,7 @@
 		1A25BAFD29D78A49000CEB67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A25BAFC29D78A49000CEB67 /* Assets.xcassets */; };
 		1A25BB0029D78A49000CEB67 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A25BAFE29D78A49000CEB67 /* LaunchScreen.storyboard */; };
 		1A25BB0D29D8ADF7000CEB67 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A25BB0C29D8ADF7000CEB67 /* HomeViewController.swift */; };
+		1A491F7229E5645C001C25DF /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A491F7129E5645C001C25DF /* UserProfile.swift */; };
 		1AB9163529DAEB4B00E1D717 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9163429DAEB4B00E1D717 /* TabBarViewController.swift */; };
 		1AB9163729DAF1B000E1D717 /* SavedJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9163629DAF1B000E1D717 /* SavedJobViewController.swift */; };
 		1AB9163929DAF42F00E1D717 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9163829DAF42F00E1D717 /* ProfileViewController.swift */; };
@@ -34,6 +35,7 @@
 		1A25BAFF29D78A49000CEB67 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1A25BB0129D78A49000CEB67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A25BB0C29D8ADF7000CEB67 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		1A491F7129E5645C001C25DF /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		1AB9163429DAEB4B00E1D717 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		1AB9163629DAF1B000E1D717 /* SavedJobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedJobViewController.swift; sourceTree = "<group>"; };
 		1AB9163829DAF42F00E1D717 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 			children = (
 				1AB9163C29DE121300E1D717 /* APIModel.swift */,
 				1AB9163E29DE128800E1D717 /* JobPosting.swift */,
+				1A491F7129E5645C001C25DF /* UserProfile.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 			files = (
 				1AB9163929DAF42F00E1D717 /* ProfileViewController.swift in Sources */,
 				1AB9163F29DE128800E1D717 /* JobPosting.swift in Sources */,
+				1A491F7229E5645C001C25DF /* UserProfile.swift in Sources */,
 				1AB9164929E2EAC700E1D717 /* JobHuntDB.xcdatamodeld in Sources */,
 				1AB9164B29E2EBEF00E1D717 /* DBManager.swift in Sources */,
 				1AB9164429DE1A8400E1D717 /* JobPostingCell.swift in Sources */,

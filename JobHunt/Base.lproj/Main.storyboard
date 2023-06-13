@@ -33,7 +33,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cgI-MI-mEx">
-                                <rect key="frame" x="0.0" y="769" width="393" height="83"/>
+                                <rect key="frame" x="0.0" y="803" width="393" height="49"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <tabBarItem systemItem="favorites" id="okl-BD-DsM"/>
@@ -682,21 +682,32 @@
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M0J-GG-rg4">
+                                        <rect key="frame" x="337" y="58" width="41" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Save"/>
+                                        <connections>
+                                            <action selector="saveProfileAction:" destination="iCQ-jz-d4l" eventType="touchUpInside" id="atO-s4-xLr"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="2nw-vC-cmd"/>
                                     <constraint firstAttribute="bottom" secondItem="1a6-wa-CiV" secondAttribute="bottom" constant="10" id="Mlh-sg-ELf"/>
                                     <constraint firstItem="1a6-wa-CiV" firstAttribute="centerX" secondItem="Nfd-1J-po1" secondAttribute="centerX" id="Pv8-I0-LIG"/>
+                                    <constraint firstItem="M0J-GG-rg4" firstAttribute="centerY" secondItem="1a6-wa-CiV" secondAttribute="centerY" id="Rz4-rh-qfO"/>
+                                    <constraint firstAttribute="trailing" secondItem="M0J-GG-rg4" secondAttribute="trailing" constant="15" id="ZJR-wW-1sW"/>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gYg-gK-ZWV">
                                 <rect key="frame" x="0.0" y="100" width="393" height="718"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KyP-qy-b5F">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="666"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="676"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QBT-ke-wVS">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_avatar" translatesAutoresizingMaskIntoConstraints="NO" id="QBT-ke-wVS">
                                                 <rect key="frame" x="136.66666666666666" y="10" width="119.99999999999997" height="120"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="120" id="RFc-WS-1Ny"/>
@@ -713,6 +724,9 @@
                                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" image="plus" catalog="system"/>
+                                                <connections>
+                                                    <action selector="addProfileBtnAction:" destination="iCQ-jz-d4l" eventType="touchUpInside" id="Bco-Ir-cy2"/>
+                                                </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="wVU-uP-aIf">
                                                 <rect key="frame" x="15" y="150" width="363" height="506"/>
@@ -731,6 +745,9 @@
                                                         <rect key="frame" x="0.0" y="98" width="363" height="30"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" title="Upload resume"/>
+                                                        <connections>
+                                                            <action selector="uploadResumeAction:" destination="iCQ-jz-d4l" eventType="touchUpInside" id="7aL-JQ-4kV"/>
+                                                        </connections>
                                                     </button>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zr4-B3-akV">
                                                         <rect key="frame" x="0.0" y="143" width="363" height="363"/>
@@ -744,7 +761,7 @@
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="wVU-uP-aIf" secondAttribute="bottom" constant="10" id="7QO-0S-dMJ"/>
+                                            <constraint firstAttribute="bottom" secondItem="wVU-uP-aIf" secondAttribute="bottom" constant="20" id="7QO-0S-dMJ"/>
                                             <constraint firstItem="BUc-js-2at" firstAttribute="bottom" secondItem="QBT-ke-wVS" secondAttribute="bottom" id="Adm-9e-Ixi"/>
                                             <constraint firstItem="BUc-js-2at" firstAttribute="trailing" secondItem="QBT-ke-wVS" secondAttribute="trailing" id="BnX-bP-wCg"/>
                                             <constraint firstItem="QBT-ke-wVS" firstAttribute="centerX" secondItem="KyP-qy-b5F" secondAttribute="centerX" id="Gks-A2-D0X"/>
@@ -763,18 +780,6 @@
                                     <constraint firstAttribute="trailing" secondItem="KyP-qy-b5F" secondAttribute="trailing" id="rDd-kq-NhF"/>
                                 </constraints>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gFf-97-n1g">
-                                <rect key="frame" x="15" y="763" width="363" height="55"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="G89-TY-8CG"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Save profile">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pwh-p0-uHJ"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -786,12 +791,16 @@
                             <constraint firstItem="pwh-p0-uHJ" firstAttribute="trailing" secondItem="gYg-gK-ZWV" secondAttribute="trailing" id="NSd-oY-iqc"/>
                             <constraint firstItem="Nfd-1J-po1" firstAttribute="top" secondItem="pPf-6l-KlD" secondAttribute="top" id="fXr-vp-fVx"/>
                             <constraint firstItem="gYg-gK-ZWV" firstAttribute="width" secondItem="pPf-6l-KlD" secondAttribute="width" id="knC-wY-L7j"/>
-                            <constraint firstItem="pwh-p0-uHJ" firstAttribute="trailing" secondItem="gFf-97-n1g" secondAttribute="trailing" constant="15" id="kpb-s6-3if"/>
-                            <constraint firstItem="gFf-97-n1g" firstAttribute="leading" secondItem="pwh-p0-uHJ" secondAttribute="leading" constant="15" id="u5d-Un-hkJ"/>
                             <constraint firstItem="pwh-p0-uHJ" firstAttribute="bottom" secondItem="gYg-gK-ZWV" secondAttribute="bottom" id="vvs-88-QdJ"/>
-                            <constraint firstItem="pwh-p0-uHJ" firstAttribute="bottom" secondItem="gFf-97-n1g" secondAttribute="bottom" id="zRy-wo-t61"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="addProfileBtn" destination="BUc-js-2at" id="zWd-3G-Cgd"/>
+                        <outlet property="emailTF" destination="AhG-aS-bnt" id="maB-ch-aXQ"/>
+                        <outlet property="nameTF" destination="mgd-LD-fqG" id="aQk-bg-r4V"/>
+                        <outlet property="profileImgView" destination="QBT-ke-wVS" id="j3P-NY-6L6"/>
+                        <outlet property="resumeImgView" destination="Zr4-B3-akV" id="7kB-kE-Rv1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SGF-9G-4TC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -800,6 +809,7 @@
     </scenes>
     <resources>
         <image name="arrowshape.backward.fill" catalog="system" width="128" height="104"/>
+        <image name="ic_avatar" width="180" height="180"/>
         <image name="ic_filter" width="25" height="25"/>
         <image name="ic_job_type" width="24" height="24"/>
         <image name="ic_save" width="24" height="24"/>

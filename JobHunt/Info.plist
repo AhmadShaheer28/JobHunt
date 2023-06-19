@@ -29,5 +29,9 @@
 	<string>You can take photos to document </string>
 	<key>NSCameraUsageDescription</key>
 	<string>Can select photos from your gallary for resume</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<true/>
+	<key>UIUserInterfaceStyle</key>
+	<string>Light</string>
 </dict>
 </plist>

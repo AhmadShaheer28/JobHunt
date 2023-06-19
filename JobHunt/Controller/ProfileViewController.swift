@@ -12,19 +12,26 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var addProfileBtn: UIButton!
     @IBOutlet weak var profileImgView: UIImageView!
     @IBOutlet weak var resumeImgView: UIImageView!
+    @IBOutlet weak var resumeCardView: UIView!
     @IBOutlet weak var nameTF: UITextField!
+    @IBOutlet weak var fileNameLbl: UILabel!
+    @IBOutlet weak var fileInfoLbl: UILabel!
     @IBOutlet weak var emailTF: UITextField!
     
     
     var user: UserProfile?
     var hasSelectedCamera = false
+    var resumeImg: UIImage?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        resumeCardView.isHidden = true
         profileImgView.layer.cornerRadius = 60
         addProfileBtn.layer.cornerRadius = 16
+        resumeCardView.layer.cornerRadius = 12
+        dropShadowToCard()
         
         if let uProfile = DBManager.shared.getProfile() {
             user = uProfile
@@ -40,8 +47,18 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
         nameTF.text = user.name
         emailTF.text = user.email
         
-        profileImgView.image = UIImage(data: user.profileImg!)
-        resumeImgView.image = UIImage(data: user.resume!)
+        profileImgView.image = MFileManager.shared.readProfile() ?? UIImage(named: "ic_avatar")
+        showResumeCard()
+    }
+    
+    func showResumeCard() {
+        if let url = MFileManager.shared.read(type: .resume).url {
+            resumeCardView.isHidden = false
+            fileNameLbl.text = url.fileName()
+            fileInfoLbl.text = "\(getStringDate(from: url.fileDate()))"
+        } else {
+            resumeCardView.isHidden = true
+        }
     }
     
     func open(_ type: UIImagePickerController.SourceType) {
@@ -54,10 +71,28 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
         
     }
     
+    func dropShadowToCard() {
+        DispatchQueue.main.async {
+            self.resumeCardView.layer.masksToBounds = false
+            self.resumeCardView.layer.shadowColor = UIColor.black.cgColor
+            self.resumeCardView.layer.shadowOpacity = 0.2
+            self.resumeCardView.layer.shadowOffset = CGSize(width: 0, height: 1)
+            self.resumeCardView.layer.shadowRadius = 4
+            self.resumeCardView.layer.shadowPath = UIBezierPath(rect: self.resumeCardView.bounds).cgPath
+        }
+    }
+    
     func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func getStringDate(from date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        let sDate = dateFormatter.string(from: date)
+        return sDate
     }
     
     @IBAction func addProfileBtnAction(_ sender: Any) {
@@ -73,10 +108,13 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
     @IBAction func saveProfileAction(_ sender: Any) {
         let name = nameTF.text ?? ""
         let email = emailTF.text ?? ""
-        let profileimg = profileImgView.image?.jpegData(compressionQuality: 1)
-        let resume = resumeImgView.image?.jpegData(compressionQuality: 1)
+        let profileimg = profileImgView.image?.pngData()
         
-        let user = UserProfile(name: name, email: email, profileImg: profileimg, resume: resume)
+        let user = UserProfile(name: name, email: email, profileImg: nil, resume: nil)
+        
+        if let profileimg {
+            _ = MFileManager.shared.savePNG(data: profileimg, type: .profile)
+        }
         
         DBManager.shared.saveProfile(user: user)
         showAlert(title: "Profile saved!", message: "")
@@ -98,7 +136,10 @@ extension ProfileViewController: UIImagePickerControllerDelegate {
             if !hasSelectedCamera {
                 profileImgView.image = image
             } else {
-                resumeImgView.image = image
+                if let resume = image.pngData() {
+                    _ = MFileManager.shared.savePNG(data: resume, type: .resume)
+                    self.showResumeCard()
+                }
             }
             
         }
@@ -110,5 +151,27 @@ extension ProfileViewController: UIImagePickerControllerDelegate {
 
     fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
         return input.rawValue
+    }
+}
+
+
+//MARK: - URL extension
+
+extension URL {
+    func fileDate() -> Date {
+        var fileDate = Date()
+        do {
+            let resources = try self.resourceValues(forKeys:[.creationDateKey])
+            fileDate = resources.creationDate!
+            print ("\(fileDate)")
+        } catch {
+            print("Error: \(error)")
+        }
+        
+        return fileDate
+    }
+    
+    func fileName() -> String {
+        return self.deletingPathExtension().lastPathComponent
     }
 }

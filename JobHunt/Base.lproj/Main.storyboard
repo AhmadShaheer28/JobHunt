@@ -3,10 +3,16 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="archivo.regular.ttf">
+            <string>Archivo-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="8bi-Wz-wSJ">
@@ -736,7 +742,7 @@ your area</string>
                                 <rect key="frame" x="0.0" y="100" width="393" height="718"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KyP-qy-b5F">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="676"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="368"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_avatar" translatesAutoresizingMaskIntoConstraints="NO" id="QBT-ke-wVS">
                                                 <rect key="frame" x="136.66666666666666" y="10" width="119.99999999999997" height="120"/>
@@ -760,7 +766,7 @@ your area</string>
                                                 </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="wVU-uP-aIf">
-                                                <rect key="frame" x="15" y="150" width="363" height="506"/>
+                                                <rect key="frame" x="15" y="150" width="363" height="198"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mgd-LD-fqG">
                                                         <rect key="frame" x="0.0" y="0.0" width="363" height="34"/>
@@ -780,13 +786,60 @@ your area</string>
                                                             <action selector="uploadResumeAction:" destination="iCQ-jz-d4l" eventType="touchUpInside" id="7aL-JQ-4kV"/>
                                                         </connections>
                                                     </button>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zr4-B3-akV">
-                                                        <rect key="frame" x="0.0" y="143" width="363" height="363"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SrY-E1-5cZ">
+                                                        <rect key="frame" x="0.0" y="143" width="363" height="55"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XQ5-Pf-v6A">
+                                                                <rect key="frame" x="5" y="3.6666666666666856" width="353" height="48"/>
+                                                                <subviews>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="yvT-Jc-Cep">
+                                                                        <rect key="frame" x="10" y="10" width="333" height="28"/>
+                                                                        <subviews>
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_file" translatesAutoresizingMaskIntoConstraints="NO" id="irO-cR-q7e">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="24" height="28"/>
+                                                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" constant="24" id="21G-uk-yaF"/>
+                                                                                    <constraint firstAttribute="height" constant="28" id="igF-z5-vpT"/>
+                                                                                </constraints>
+                                                                            </imageView>
+                                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="B0E-w3-a6M">
+                                                                                <rect key="frame" x="42" y="0.0" width="291" height="28"/>
+                                                                                <subviews>
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="File_name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zRw-pa-GAa">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="291" height="13.333333333333334"/>
+                                                                                        <fontDescription key="fontDescription" name="Archivo-Regular" family="Archivo" pointSize="15"/>
+                                                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                        <nil key="highlightedColor"/>
+                                                                                    </label>
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="06.07.2022 - 6kb" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VBi-B1-7o4">
+                                                                                        <rect key="frame" x="0.0" y="17.333333333333314" width="291" height="10.666666666666664"/>
+                                                                                        <fontDescription key="fontDescription" name="Archivo-Regular" family="Archivo" pointSize="13"/>
+                                                                                        <color key="textColor" name="greyColor"/>
+                                                                                        <nil key="highlightedColor"/>
+                                                                                    </label>
+                                                                                </subviews>
+                                                                            </stackView>
+                                                                        </subviews>
+                                                                    </stackView>
+                                                                </subviews>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="trailing" secondItem="yvT-Jc-Cep" secondAttribute="trailing" constant="10" id="1E8-jf-wFM"/>
+                                                                    <constraint firstAttribute="height" constant="48" id="EzN-fJ-Z9M"/>
+                                                                    <constraint firstItem="yvT-Jc-Cep" firstAttribute="centerY" secondItem="XQ5-Pf-v6A" secondAttribute="centerY" id="HHK-mH-r4X"/>
+                                                                    <constraint firstItem="yvT-Jc-Cep" firstAttribute="leading" secondItem="XQ5-Pf-v6A" secondAttribute="leading" constant="10" id="XPS-Gy-Wy9"/>
+                                                                </constraints>
+                                                            </view>
+                                                        </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" secondItem="Zr4-B3-akV" secondAttribute="height" multiplier="1:1" id="qF6-sI-6qp"/>
+                                                            <constraint firstItem="XQ5-Pf-v6A" firstAttribute="leading" secondItem="SrY-E1-5cZ" secondAttribute="leading" constant="5" id="2Oq-C1-eCN"/>
+                                                            <constraint firstAttribute="height" constant="55" id="8W3-KZ-9Vg"/>
+                                                            <constraint firstItem="XQ5-Pf-v6A" firstAttribute="centerY" secondItem="SrY-E1-5cZ" secondAttribute="centerY" id="dqd-vs-lk5"/>
+                                                            <constraint firstAttribute="trailing" secondItem="XQ5-Pf-v6A" secondAttribute="trailing" constant="5" id="hce-cd-2Oa"/>
                                                         </constraints>
-                                                    </imageView>
+                                                    </view>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
@@ -828,9 +881,11 @@ your area</string>
                     <connections>
                         <outlet property="addProfileBtn" destination="BUc-js-2at" id="zWd-3G-Cgd"/>
                         <outlet property="emailTF" destination="AhG-aS-bnt" id="maB-ch-aXQ"/>
+                        <outlet property="fileInfoLbl" destination="VBi-B1-7o4" id="5cz-Hz-rB5"/>
+                        <outlet property="fileNameLbl" destination="zRw-pa-GAa" id="8dX-0P-4IO"/>
                         <outlet property="nameTF" destination="mgd-LD-fqG" id="aQk-bg-r4V"/>
                         <outlet property="profileImgView" destination="QBT-ke-wVS" id="j3P-NY-6L6"/>
-                        <outlet property="resumeImgView" destination="Zr4-B3-akV" id="7kB-kE-Rv1"/>
+                        <outlet property="resumeCardView" destination="XQ5-Pf-v6A" id="Pjw-na-GYa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SGF-9G-4TC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -841,12 +896,16 @@ your area</string>
     <resources>
         <image name="arrowshape.backward.fill" catalog="system" width="128" height="104"/>
         <image name="ic_avatar" width="180" height="180"/>
+        <image name="ic_file" width="24" height="24"/>
         <image name="ic_filter" width="25" height="25"/>
         <image name="ic_job_type" width="24" height="24"/>
         <image name="ic_save" width="24" height="24"/>
         <image name="ic_search" width="26" height="26"/>
         <image name="ic_time" width="24" height="24"/>
         <image name="plus" catalog="system" width="128" height="113"/>
+        <namedColor name="greyColor">
+            <color red="0.32899999618530273" green="0.32400000095367432" blue="0.4779999852180481" alpha="0.33000001311302185" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

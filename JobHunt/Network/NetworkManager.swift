@@ -10,7 +10,7 @@ import Foundation
 
 struct Constant {
     static let baseURL = "https://www.reed.co.uk/api/1.0/"
-    static let apiKey = "20c07230-4683-4bb7-8a7a-22a3262623d3"
+    static let apiKey = "YOUR_API_KEY"
 }
 
 struct EndPoint {

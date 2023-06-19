@@ -13,6 +13,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var loader: UIActivityIndicatorView!
     @IBOutlet weak var jobSearchTF: UITextField!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var noJobsLbl: UILabel!
     
     
     var jobPostings = [JobPosting]()
@@ -63,6 +64,7 @@ class HomeViewController: UIViewController {
             self.loader.isHidden = true
             
             if let results {
+                self.noJobsLbl.isHidden = !results.results.isEmpty
                 self.jobPostings = results.results
                 self.tableView.reloadData()
             }
@@ -113,6 +115,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         cell.empNameLbl.text = jobPostings[indexPath.row].employerName
         cell.locationLbl.text = jobPostings[indexPath.row].locationName
         cell.empViewLbl.text = jobPostings[indexPath.row].employerName?.prefix(1).uppercased()
+        
         cell.postingView.backgroundColor = generateRandomColor()
         
         return cell

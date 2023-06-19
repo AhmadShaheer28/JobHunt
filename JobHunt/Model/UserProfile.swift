@@ -11,6 +11,6 @@ import Foundation
 struct UserProfile {
     let name: String
     let email: String
-    let profileImg: Data
-    let resume: Data
+    let profileImg: Data?
+    let resume: Data?
 }

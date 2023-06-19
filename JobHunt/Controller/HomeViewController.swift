@@ -17,7 +17,8 @@ class HomeViewController: UIViewController {
     
     
     var jobPostings = [JobPosting]()
-    private var locationManager: CLLocationManager?
+    private var locationManager = CLLocationManager()
+    var locationName = ""
     
     
     override func viewDidLoad() {
@@ -30,8 +31,6 @@ class HomeViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        let param = ["keywords": "software developer", "locationName": "london"]
-        getJobs(param: param)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,7 +42,7 @@ class HomeViewController: UIViewController {
     @IBAction func searchAction(_ sender: Any) {
         if let searchedText = jobSearchTF.text {
             if !searchedText.isEmpty {
-                let param = ["keywords": "\(searchedText)", "locationName": "london"]
+                let param = ["keywords": "\(searchedText)", "locationName": "\(locationName)"]
                 getJobs(param: param)
             }
         }
@@ -82,24 +81,35 @@ class HomeViewController: UIViewController {
     }
     
     func setupLocation() {
-        locationManager?.delegate = self
+        locationManager.delegate = self
         
-        switch(locationManager?.authorizationStatus) {
+        switch(locationManager.authorizationStatus) {
             
         case .restricted, .denied:
             UIApplication.shared.open(NSURL(string: UIApplication.openSettingsURLString)! as URL)
             
         case .authorizedAlways, .authorizedWhenInUse:
-            locationManager?.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager?.startUpdatingLocation()
-            locationManager?.startUpdatingHeading()
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.startUpdatingLocation()
+            locationManager.startUpdatingHeading()
             
         case .notDetermined:
-            locationManager?.requestWhenInUseAuthorization()
+            locationManager.requestWhenInUseAuthorization()
             
         default:
             break
         }
+    }
+    
+    func getLocationDetails(latlng: String) {
+        
+        NetworkManager.shared.fetchJson(withUrl: Constant.mapBaseUrl, latlng: latlng, completion: { (geocode: GoogleGeocode) in
+            DispatchQueue.main.async {
+                self.locationName = geocode.getCountry()
+                let param = ["keywords": "software engineer", "locationName": "\(self.locationName)"]
+                self.getJobs(param: param)
+            }
+        })
     }
     
 }
@@ -107,7 +117,13 @@ class HomeViewController: UIViewController {
 extension HomeViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        locationManager?.stopUpdatingLocation()
+        if let first = locations.first {
+            let lat = first.coordinate.latitude
+            let lng = first.coordinate.longitude
+            getLocationDetails(latlng: "\(lat),\(lng)")
+        }
+        
+        locationManager.stopUpdatingLocation()
     }
 }
 

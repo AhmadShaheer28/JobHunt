@@ -11,7 +11,6 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
 
     @IBOutlet weak var addProfileBtn: UIButton!
     @IBOutlet weak var profileImgView: UIImageView!
-    @IBOutlet weak var resumeImgView: UIImageView!
     @IBOutlet weak var resumeCardView: UIView!
     @IBOutlet weak var nameTF: UITextField!
     @IBOutlet weak var fileNameLbl: UILabel!
@@ -41,13 +40,22 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
             populateUI(with: user)
         }
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(resumeCardTapped))
+        resumeCardView.addGestureRecognizer(tap)
+        
+    }
+    
+    @objc func resumeCardTapped() {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "resumePreview") as? PreviewViewController else { return }
+        vc.modalPresentationStyle = .formSheet
+        self.present(vc, animated: true)
     }
     
     func populateUI(with user: UserProfile) {
         nameTF.text = user.name
         emailTF.text = user.email
         
-        profileImgView.image = MFileManager.shared.readProfile() ?? UIImage(named: "ic_avatar")
+        profileImgView.image = MFileManager.shared.readImage(type: .profile) ?? UIImage(named: "ic_avatar")
         showResumeCard()
     }
     
@@ -110,7 +118,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
         let email = emailTF.text ?? ""
         let profileimg = profileImgView.image?.pngData()
         
-        let user = UserProfile(name: name, email: email, profileImg: nil, resume: nil)
+        let user = UserProfile(name: name, email: email)
         
         if let profileimg {
             _ = MFileManager.shared.savePNG(data: profileimg, type: .profile)

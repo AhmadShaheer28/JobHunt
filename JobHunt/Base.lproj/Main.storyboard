@@ -742,7 +742,7 @@ your area</string>
                                 <rect key="frame" x="0.0" y="100" width="393" height="718"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KyP-qy-b5F">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="368"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="383"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_avatar" translatesAutoresizingMaskIntoConstraints="NO" id="QBT-ke-wVS">
                                                 <rect key="frame" x="136.66666666666666" y="10" width="119.99999999999997" height="120"/>
@@ -766,7 +766,7 @@ your area</string>
                                                 </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="wVU-uP-aIf">
-                                                <rect key="frame" x="15" y="150" width="363" height="198"/>
+                                                <rect key="frame" x="15" y="150" width="363" height="213"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mgd-LD-fqG">
                                                         <rect key="frame" x="0.0" y="0.0" width="363" height="34"/>
@@ -787,10 +787,10 @@ your area</string>
                                                         </connections>
                                                     </button>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SrY-E1-5cZ">
-                                                        <rect key="frame" x="0.0" y="143" width="363" height="55"/>
+                                                        <rect key="frame" x="0.0" y="143" width="363" height="70"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XQ5-Pf-v6A">
-                                                                <rect key="frame" x="5" y="3.6666666666666856" width="353" height="48"/>
+                                                                <rect key="frame" x="5" y="11" width="353" height="48"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="yvT-Jc-Cep">
                                                                         <rect key="frame" x="10" y="10" width="333" height="28"/>
@@ -835,7 +835,7 @@ your area</string>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="XQ5-Pf-v6A" firstAttribute="leading" secondItem="SrY-E1-5cZ" secondAttribute="leading" constant="5" id="2Oq-C1-eCN"/>
-                                                            <constraint firstAttribute="height" constant="55" id="8W3-KZ-9Vg"/>
+                                                            <constraint firstAttribute="height" constant="70" id="8W3-KZ-9Vg"/>
                                                             <constraint firstItem="XQ5-Pf-v6A" firstAttribute="centerY" secondItem="SrY-E1-5cZ" secondAttribute="centerY" id="dqd-vs-lk5"/>
                                                             <constraint firstAttribute="trailing" secondItem="XQ5-Pf-v6A" secondAttribute="trailing" constant="5" id="hce-cd-2Oa"/>
                                                         </constraints>
@@ -891,6 +891,35 @@ your area</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SGF-9G-4TC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="677.0992366412213" y="23.943661971830988"/>
+        </scene>
+        <!--Preview View Controller-->
+        <scene sceneID="K4a-bT-DCM">
+            <objects>
+                <viewController storyboardIdentifier="resumePreview" id="81z-p0-ACZ" customClass="PreviewViewController" customModule="JobHunt" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="P3c-cW-Zxz">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rVa-eB-bAc">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="J0R-Dz-ngl"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="rVa-eB-bAc" firstAttribute="leading" secondItem="J0R-Dz-ngl" secondAttribute="leading" id="0gO-id-Uls"/>
+                            <constraint firstItem="J0R-Dz-ngl" firstAttribute="trailing" secondItem="rVa-eB-bAc" secondAttribute="trailing" id="XDQ-UL-qhZ"/>
+                            <constraint firstItem="J0R-Dz-ngl" firstAttribute="bottom" secondItem="rVa-eB-bAc" secondAttribute="bottom" id="ba4-0A-enu"/>
+                            <constraint firstItem="rVa-eB-bAc" firstAttribute="top" secondItem="J0R-Dz-ngl" secondAttribute="top" id="hg0-g6-Pms"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="resumeImgView" destination="rVa-eB-bAc" id="13c-ul-sgK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FMs-0s-EOA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1783" y="430"/>
         </scene>
     </scenes>
     <resources>

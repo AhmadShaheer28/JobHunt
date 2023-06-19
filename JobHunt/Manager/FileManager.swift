@@ -47,8 +47,9 @@ class MFileManager {
         return (img: image, url: docURL)
     }
     
-    func readProfile() -> UIImage? {
-        guard let filePath = append(toPath: documentDirectory(), withPathComponent: "\(pFileName).png") else { return nil }
+    func readImage(type: MImgType) -> UIImage? {
+        let fileName = type == .resume ? rFileName : pFileName
+        guard let filePath = append(toPath: documentDirectory(), withPathComponent: "\(fileName).png") else { return nil }
         
         let image = UIImage(contentsOfFile: filePath)
         

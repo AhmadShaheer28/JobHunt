@@ -24,6 +24,7 @@
 		1AB9164629DF438500E1D717 /* JobDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9164529DF438500E1D717 /* JobDetailViewController.swift */; };
 		1AB9164929E2EAC700E1D717 /* JobHuntDB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9164729E2EAC700E1D717 /* JobHuntDB.xcdatamodeld */; };
 		1AB9164B29E2EBEF00E1D717 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB9164A29E2EBEF00E1D717 /* DBManager.swift */; };
+		1AF3D9A029E75A0000F1C1A9 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF3D99F29E75A0000F1C1A9 /* PreviewViewController.swift */; };
 		1AF994F029E6CF2100A7424B /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF994EF29E6CF2100A7424B /* FileManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 		1AB9164529DF438500E1D717 /* JobDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobDetailViewController.swift; sourceTree = "<group>"; };
 		1AB9164829E2EAC700E1D717 /* JobHuntDB.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JobHuntDB.xcdatamodel; sourceTree = "<group>"; };
 		1AB9164A29E2EBEF00E1D717 /* DBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
+		1AF3D99F29E75A0000F1C1A9 /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
 		1AF994EF29E6CF2100A7424B /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -112,6 +114,7 @@
 				1A25BB0C29D8ADF7000CEB67 /* HomeViewController.swift */,
 				1AB9163429DAEB4B00E1D717 /* TabBarViewController.swift */,
 				1AB9164529DF438500E1D717 /* JobDetailViewController.swift */,
+				1AF3D99F29E75A0000F1C1A9 /* PreviewViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 				1AB9164929E2EAC700E1D717 /* JobHuntDB.xcdatamodeld in Sources */,
 				1AB9164B29E2EBEF00E1D717 /* DBManager.swift in Sources */,
 				1AB9164429DE1A8400E1D717 /* JobPostingCell.swift in Sources */,
+				1AF3D9A029E75A0000F1C1A9 /* PreviewViewController.swift in Sources */,
 				1AB9163529DAEB4B00E1D717 /* TabBarViewController.swift in Sources */,
 				1AB9163729DAF1B000E1D717 /* SavedJobViewController.swift in Sources */,
 				1AB9163B29DE01BD00E1D717 /* NetworkManager.swift in Sources */,

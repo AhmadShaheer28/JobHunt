@@ -9,7 +9,5 @@
     <entity name="UProfile" representedClassName="UProfile" syncable="YES" codeGenerationType="class">
         <attribute name="email" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="profileImg" optional="YES" attributeType="Binary"/>
-        <attribute name="resume" optional="YES" attributeType="Binary"/>
     </entity>
 </model>

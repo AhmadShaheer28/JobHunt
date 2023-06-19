@@ -112,8 +112,6 @@ class DBManager: NSObject {
         
         saved.setValue(user.name, forKey: "name")
         saved.setValue(user.email, forKey: "email")
-        saved.setValue(user.profileImg, forKey: "profileImg")
-        saved.setValue(user.resume, forKey: "resume")
         
         do { try context.save() }
         catch let error { print("error while saving Data", error.localizedDescription) }
@@ -132,9 +130,7 @@ class DBManager: NSObject {
             
             if let profile {
                 if let name = profile.name, let email = profile.email {
-                    let pimage = profile.profileImg ?? Data()
-                    let resume = profile.resume ?? Data()
-                    user = UserProfile(name: name, email: email, profileImg: pimage, resume: resume)
+                    user = UserProfile(name: name, email: email)
                 }
             }
 

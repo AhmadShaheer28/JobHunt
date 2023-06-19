@@ -25,7 +25,7 @@ class HomeViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        setUpLocationManager()
+        setupLocation()
                 
         tableView.delegate = self
         tableView.dataSource = self
@@ -81,17 +81,25 @@ class HomeViewController: UIViewController {
         return randomColor
     }
     
-    func setUpLocationManager() {
+    func setupLocation() {
+        locationManager?.delegate = self
         
-        locationManager = CLLocationManager()
-        
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager?.delegate = self
-            locationManager?.requestWhenInUseAuthorization()
+        switch(locationManager?.authorizationStatus) {
+            
+        case .restricted, .denied:
+            UIApplication.shared.open(NSURL(string: UIApplication.openSettingsURLString)! as URL)
+            
+        case .authorizedAlways, .authorizedWhenInUse:
             locationManager?.desiredAccuracy = kCLLocationAccuracyBest
             locationManager?.startUpdatingLocation()
-        } else { print("Please enable location service!") }
-        
+            locationManager?.startUpdatingHeading()
+            
+        case .notDetermined:
+            locationManager?.requestWhenInUseAuthorization()
+            
+        default:
+            break
+        }
     }
     
 }

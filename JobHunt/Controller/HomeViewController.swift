@@ -8,7 +8,7 @@
 import UIKit
 import CoreLocation
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, PickedLocationDelegate {
 
     @IBOutlet weak var loader: UIActivityIndicatorView!
     @IBOutlet weak var jobSearchTF: UITextField!
@@ -19,6 +19,7 @@ class HomeViewController: UIViewController {
     var jobPostings = [JobPosting]()
     private var locationManager = CLLocationManager()
     var locationName = ""
+    var keyword = "software developer"
     
     
     override func viewDidLoad() {
@@ -40,8 +41,10 @@ class HomeViewController: UIViewController {
     
     
     @IBAction func searchAction(_ sender: Any) {
+        view.endEditing(true)
         if let searchedText = jobSearchTF.text {
             if !searchedText.isEmpty {
+                keyword = searchedText
                 let param = ["keywords": "\(searchedText)", "locationName": "\(locationName)"]
                 getJobs(param: param)
             }
@@ -49,11 +52,14 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func mapBtnAction(_ sender: Any) {
-        print("Map button tapped!")
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "mapVC") as? MapViewController else { return }
+        vc.delegate = self
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func getJobs(param: [String: String]) {
         
+        noJobsLbl.isHidden = true
         self.loader.isHidden = false
         loader.startAnimating()
         
@@ -106,10 +112,15 @@ class HomeViewController: UIViewController {
         NetworkManager.shared.fetchJson(withUrl: Constant.mapBaseUrl, latlng: latlng, completion: { (geocode: GoogleGeocode) in
             DispatchQueue.main.async {
                 self.locationName = geocode.getCountry()
-                let param = ["keywords": "software engineer", "locationName": "\(self.locationName)"]
+                let param = ["keywords": "\(self.keyword)", "locationName": "\(self.locationName)"]
                 self.getJobs(param: param)
             }
         })
+    }
+    
+    // called when user selects location from map view
+    func didSelectLocation(latlng: String) {
+        getLocationDetails(latlng: latlng)
     }
     
 }

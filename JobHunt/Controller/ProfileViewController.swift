@@ -43,12 +43,18 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
         let tap = UITapGestureRecognizer(target: self, action: #selector(resumeCardTapped))
         resumeCardView.addGestureRecognizer(tap)
         
+        let tapView = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        view.addGestureRecognizer(tapView)
     }
     
     @objc func resumeCardTapped() {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "resumePreview") as? PreviewViewController else { return }
         vc.modalPresentationStyle = .formSheet
         self.present(vc, animated: true)
+    }
+    
+    @objc func hideKeyboard() {
+        view.endEditing(true)
     }
     
     func populateUI(with user: UserProfile) {
